@@ -1,4 +1,5 @@
 const save_location_notes = require('./save_location_notes');
+const update_location_notes = require('./update_location_note');
 const get_location_notes = require('./get_location_notes');
 const geoFire = require('geofire-common');
 const {Timestamp} = require('firebase-admin/firestore');
@@ -76,3 +77,9 @@ exports.onGetLocationNotesWithInProximity = async(request) =>{
     }
     return matchingDocs;
 }; 
+
+
+exports.onLocationViewerCreated = function(event){
+       const noteId = event.params.locationNoteId;
+       update_location_notes.updateLocationNoteViewCount(noteId);
+}
