@@ -1,6 +1,7 @@
 
 const {getFirestore} = require("firebase-admin/firestore");
 
+
 exports.updatePlayerCount = function(organiserId, gameId){
 
    const docRef =  getFirestore().collection('travel_game_organisers').doc(organiserId).collection('games').doc(gameId);
@@ -13,11 +14,9 @@ exports.updatePlayerCount = function(organiserId, gameId){
     else{
         totalPlayers = currentTotalPlayers + 1;
     }
-
     docRef.update({
         "totalPlayers": totalPlayers
-    })
-    
+    }) 
    });
-
 }
+
